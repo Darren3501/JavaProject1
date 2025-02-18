@@ -16,7 +16,7 @@ public class DarrenMahinProject1 {
 		}
 		return candyCount;
 	}
-	
+	//testing git!
 	public static ArrayList<String> getOneWordFoodItems(String[] list)
 	{
 		ArrayList<String> arr = new ArrayList<>();
