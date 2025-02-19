@@ -114,36 +114,65 @@ public class DarrenMahinProject1 {
 	
 	public static String getMostFrequentFoodItem(String[] list)
 	{
-		System.out.println("This is a testttttt");
-		return null;
+		String mostFreq = "";
+		int[] count = new int[list.length];
+		int maxFreq = 0;
+		int recentIndex = -1;
+		
+		for(int i = 0; i < list.length; i++)
+		{
+			list[i] = list[i].trim();
+			count[i] = 1;
+			for(int j = 0; j < list.length; j++)
+			{
+				list[j] = list[j].trim();
+				if(list[i].equalsIgnoreCase(list[j]) && i != j)
+				{
+					count[i]++;
+				}
+			}
+			
+			if(count[i] > maxFreq || count[i] == maxFreq && i > recentIndex)
+			{
+				maxFreq = count[i];
+				mostFreq = list[i];
+				recentIndex = i;
+			}
+		}
+		
+		return mostFreq;
 	}
 	
 	public static String getLeastFrequentFoodItem(String[] list)
 	{
 		
-		int lowestFrequency = Integer.MAX_VALUE;
-		String least = "";
+		String leastFreq = "";
+		int[] count = new int[list.length];
+		int prevMin = Integer.MAX_VALUE;
+		int firstIndex = -1;
 		
 		for(int i = 0; i < list.length; i++)
 		{
-			int frequency = 0;
+			list[i] = list[i].trim();
+			count[i] = 1;
 			for(int j = 0; j < list.length; j++)
 			{
-				if(list[i].toLowerCase().equals(list[j].toLowerCase()))
+				list[j] = list[j].trim();
+				if(list[i].equalsIgnoreCase(list[j]) && i != j)
 				{
-					frequency++;
-					System.out.println(list[i]);
+					count[i]++;
 				}
 			}
 			
-			if(frequency < lowestFrequency)
+			if(count[i] < prevMin || count[i] == prevMin && i < firstIndex)
 			{
-				lowestFrequency = frequency;
-				least = list[i];
+				leastFreq = list[i];
+				prevMin = count[i];
+				firstIndex = i;
 			}
 		}
 		
-		return least;
+		return leastFreq;
 	}
 	
 	/**
@@ -217,6 +246,7 @@ public class DarrenMahinProject1 {
 		ArrayList<String> unique = new ArrayList<>();
 		ArrayList<String> nonUnique = new ArrayList<>();
 		String least = "";
+		String mostFreq = "";
 		
 		
 		//Prompt user 
@@ -277,7 +307,8 @@ public class DarrenMahinProject1 {
 			
 			else if(answer == 6) //user enters 6
 			{
-				getMostFrequentFoodItem(foodItems); //call getMostFrequentFoodItem
+				mostFreq = getMostFrequentFoodItem(foodItems); //call getMostFrequentFoodItem
+				System.out.println(mostFreq.toLowerCase());
 			}
 			
 			else if(answer == 7) //user enters 7
