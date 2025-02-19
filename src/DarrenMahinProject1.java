@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -85,8 +87,29 @@ public class DarrenMahinProject1 {
 	
 	public static ArrayList<String> getNonUniqueFoodItems(String[] list)
 	{
-		System.out.println("This is a testtttt");
-		return null;
+		ArrayList<String> nonUniqueList = new ArrayList<>();
+		Arrays.sort(list, String.CASE_INSENSITIVE_ORDER);
+		for(int i = 0; i < list.length; i++)
+		{
+			list[i] = list[i].trim();
+			boolean duplicate = false;
+			
+			for(int j = i + 1; j < list.length; j++)
+			{
+				list[j] = list[j].trim();
+				if(list[i].equalsIgnoreCase(list[j]))
+				{
+					duplicate = true;
+					break;
+				}
+			}
+			if(duplicate)
+			{
+				nonUniqueList.add(list[i]);
+			}
+		}
+		
+		return nonUniqueList;
 	}
 	
 	public static String getMostFrequentFoodItem(String[] list)
@@ -192,6 +215,7 @@ public class DarrenMahinProject1 {
 		ArrayList<String> oneWord = new ArrayList<>();
 		ArrayList<String> multiWord = new ArrayList<>();
 		ArrayList<String> unique = new ArrayList<>();
+		ArrayList<String> nonUnique = new ArrayList<>();
 		String least = "";
 		
 		
@@ -243,7 +267,12 @@ public class DarrenMahinProject1 {
 			
 			else if(answer == 5) //user enters 5
 			{
-				getNonUniqueFoodItems(foodItems); //call getNonUniqueFoodItems
+				nonUnique = getNonUniqueFoodItems(foodItems); //catch getNonUniqueFoodItems return
+				
+				for(String s : nonUnique)
+				{
+					System.out.println(s.toLowerCase());
+				}
 			}
 			
 			else if(answer == 6) //user enters 6
