@@ -16,7 +16,7 @@ public class DarrenMahinProject1 {
 		}
 		return candyCount;
 	}
-	//testing git!
+	
 	public static ArrayList<String> getOneWordFoodItems(String[] list)
 	{
 		ArrayList<String> arr = new ArrayList<>();
@@ -66,6 +66,7 @@ public class DarrenMahinProject1 {
 			
 			for(int j = 0; j < list.length; j++)
 			{
+				list[j] = list[j].trim();
 				if(list[i].equalsIgnoreCase(list[j]) && i != j)
 				{
 					duplicate = true;
@@ -77,7 +78,7 @@ public class DarrenMahinProject1 {
 				uniqueList.add(list[i]);
 			}
 		}
-		System.out.println(String.join("\n", uniqueList));
+		
 		
 		return uniqueList;
 	}
@@ -190,6 +191,7 @@ public class DarrenMahinProject1 {
 		int mustardCount = 0;
 		ArrayList<String> oneWord = new ArrayList<>();
 		ArrayList<String> multiWord = new ArrayList<>();
+		ArrayList<String> unique = new ArrayList<>();
 		String least = "";
 		
 		
@@ -201,7 +203,6 @@ public class DarrenMahinProject1 {
 			if(answer != 9)
 			{
 				printMenu(); //prompt user with interactive menu
-				
 			}
 			answer = scn.nextInt(); //get user input
 			
@@ -232,7 +233,12 @@ public class DarrenMahinProject1 {
 			
 			else if(answer == 4) //user enters 4
 			{
-				System.out.println(getUniqueFoodItems(foodItems)); //call getUniqueFoodItems
+				unique = (getUniqueFoodItems(foodItems)); //catch getUniqueFoodItems return
+				
+				for(String s : unique)
+				{
+					System.out.println(s.toLowerCase());
+				}
 			}
 			
 			else if(answer == 5) //user enters 5
